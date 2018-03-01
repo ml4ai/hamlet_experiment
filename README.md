@@ -44,7 +44,8 @@ The following must be checked out from kjb using svn, and should
 be placed in the <hamlet_root>/src/ directory
 (the svn commands are provided here, executed within <hamlet_root>/src/)
 
-```$ svn co svn+ssh://vision/home/svn/src/Make/trunk Make
+```
+$ svn co svn+ssh://vision/home/svn/src/Make/trunk Make
 $ svn co svn+ssh://vision/home/svn/src/lib/trunk lib
 $ svn co svn+ssh://vision/home/svn/src/include_before/trunk include_before
 $ svn co svn+ssh://vision/home/svn/src/include_after/trunk include_after
@@ -52,7 +53,9 @@ $ svn co svn+ssh://vision/home/svn/src/projects/hdp_hmm_lt/trunk hdp_hmm_lt
 ```
 
 From <hamlet_root>, create a symlink to the <hamlet_executable>:
+```
 $ ln -s src/hdp_hmm_lt/hamlet hamlet
+```
 
 
 ## Notes on running experiments using python experiment manager framework:
