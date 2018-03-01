@@ -87,6 +87,9 @@ def cp_regression(test=True):
     2000 iterations, J=600, {a,b}_h=0.1 (prior over precision of noise)
     :return:
     """
+
+    # TODO: expose num of iteration in run_experiment_script
+
     experiment_tools.run_experiment_script \
         (main_path=HAMLET_ROOT,
          data_dir=os.path.join(DATA_ROOT, 'cocktail_s16_m12/'),
