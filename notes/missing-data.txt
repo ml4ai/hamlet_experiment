@@ -1,0 +1,7 @@
+handling missing data
+noise model holds the data (because at the "end" of the generative process)
+add Ym_ for missing data: kjb::Matrix(size_t) TxK -- 1 indicates missing
+add flag for whether missing data is present
+extend hamlet.cpp setup to check parameter file for explicit flag of missing data
+log_likelihood handles computation to ignore partial missing data
+    (easy with Gaussian as any marginal is also Gaussian)

@@ -1,0 +1,11 @@
+{BFact, LT, no_LT} x 5
+
+parameters:
+    cocktail16_inference_BFact_HMM_W0.config
+    cocktail16_inference_LT_HMM_W0-J600.config
+    cocktail16_inference_noLT_HMM_W0-J600.config
+
+experiments/scripts/shell/
+	gen_cocktail_plots.sh -- edit to point to the results and data directories
+experiments/scripts/r/queries/
+cocktail_icml.txt -- edit to only include the models run
