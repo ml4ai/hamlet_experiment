@@ -66,20 +66,20 @@ $ ln -s src/hdp_hmm_lt/hamlet hamlet
 Experiments are executed from scripts within the `<domain>/experiment/` subdir
 For example, to run the cocktail_party regression test, execute:
 ```
-    <hamlet_root>/hamlet_experiment/scripts/python/experiments/cocktail_party/experiment/run_cocktail_regression.py
+<hamlet_root>/hamlet_experiment/scripts/python/experiments/cocktail_party/experiment/run_cocktail_regression.py
 ```
 
 You must have the following in your PYTHONPATH environment variable:
 ```
-    <hamlet_root>/hamlet_experiment/scripts/python/
+<hamlet_root>/hamlet_experiment/scripts/python/
 ```
 
 
 ## Notes on python 3 sibling nested-module access:
 The rules:
-    1. Sub-modules require __init__.py and those must be empty
-    2. Add the path to root in PYTHONPATH environment variable
-    3. Reference anything from one script starting at level right below root-module
+1. Sub-modules require `__init__.py` and those must be empty
+2. Add the path to root in `PYTHONPATH` environment variable
+3. Reference anything from one script starting at level right below root-module
 
 For example, if you have the following structure:
 ```
@@ -98,8 +98,11 @@ For example, if you have the following structure:
 ## Notes on batch experiment results directory naming convention:
 
 Convention for directory naming for batch results:
-    <results_root> / <experiment_name> / <data_path> / <model> / <replication> / <specific_results>
-
+```
+ <results_root> / <experiment_name> / <data_path> / <model> / <replication> / <specific_results>
+```
+... where:
+```
     <experiment_name> : Top-level name for experiment.
         For example, for the version of the cocktail_party data with
         16 speaker and 12 microphones, the name is: 'cocktail_s16_m12'
@@ -149,4 +152,4 @@ Convention for directory naming for batch results:
         u.txt
         W/
         z.txt
-
+```
