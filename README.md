@@ -74,13 +74,17 @@ You must have the following in your PYTHONPATH environment variable:
     3. Reference anything from one script starting at level right below root-module
 
 For example, if you have the following structure:
+```
     root-module
         submodule1
             script_a.py
         submodule2
             script_b.py
+```
 ... then for script-a to reference script-b, it must import as follows:
+```
     import submodule2.script_b as s_b
+```
 
 
 ## Notes on batch experiment results directory naming convention:
