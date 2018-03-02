@@ -3,11 +3,14 @@
 ## Hamlet directory structure:
 
 The following is the recommended hamlet project structure.
-Note: it's not strictly necessary that <hamlet_executable> live under
+Note: it's not strictly necessary that `<hamlet_executable>` live under
+```
     <hamlet_root>/src/hdp_hmm_lt/
-It could be anywhere -- but still need <hamlet_root>/<symlink-to-executable>
-to point to wherever the <hamlet_executable> lives
+```
+It could be anywhere -- but still need `<hamlet_root>/<symlink-to-executable>`
+to point to wherever the `<hamlet_executable>` lives.
 
+```
     <hamlet_root>               # on venti: /projects/hamlet/
 
       <symlink-to-executable>   # venti (or local): points to: <hamlet_root>/src/hdp_hmm_lt/hamlet
@@ -36,13 +39,13 @@ to point to wherever the <hamlet_executable> lives
       src/                      # kjb/projects root; includes lib, Make, include_before, include_after
         hdp_hmm_lt/
           <hamlet_executable>   # hamlet executable home location
-
+```
 
 ## Checking out hamlet from kjb
 
 The following must be checked out from kjb using svn, and should
-be placed in the <hamlet_root>/src/ directory
-(the svn commands are provided here, executed within <hamlet_root>/src/)
+be placed in the `<hamlet_root>/src/` directory
+(the svn commands are provided here, executed within `<hamlet_root>/src/`)
 
 ```
 $ svn co svn://vision.cs.arizona.edu/src/Make/trunk Make
@@ -52,7 +55,7 @@ $ svn co svn://vision.cs.arizona.edu/src/include_after/trunk include_after
 $ svn co svn://vision.cs.arizona.edu/src/projects/hdp_hmm_lt/trunk hdp_hmm_lt
 ```
 
-From <hamlet_root>, create a symlink to the <hamlet_executable>:
+From `<hamlet_root>`, create a symlink to the `<hamlet_executable>`:
 ```
 $ ln -s src/hdp_hmm_lt/hamlet hamlet
 ```
@@ -60,15 +63,20 @@ $ ln -s src/hdp_hmm_lt/hamlet hamlet
 
 ## Notes on running experiments using python experiment manager framework:
 
-Experiments are executed from scripts within the <domain>/experiment/ subdir
+Experiments are executed from scripts within the `<domain>/experiment/` subdir
 For example, to run the cocktail_party regression test, execute:
+```
     <hamlet_root>/hamlet_experiment/scripts/python/experiments/cocktail_party/experiment/run_cocktail_regression.py
+```
 
 You must have the following in your PYTHONPATH environment variable:
+```
     <hamlet_root>/hamlet_experiment/scripts/python/
+```
 
 
 ## Notes on python 3 sibling nested-module access:
+The rules:
     1. Sub-modules require __init__.py and those must be empty
     2. Add the path to root in PYTHONPATH environment variable
     3. Reference anything from one script starting at level right below root-module
