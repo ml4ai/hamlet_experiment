@@ -130,29 +130,29 @@ Convention for directory naming for batch results:
 
 ## Notes on contents of hamlet results directory:
 ```
-A/
-accuracy.txt
-beta.txt
-F1_score.txt
-gamma.txt
-h.txt
-lambda.txt
-mu.txt
-N/
-n_dot.txt
-obs.txt
-parameters.config
-phi/
-pi/
-pi0/
-precision.txt
-Q/
-recall.txt
-test_log_likelihood.txt
-theta/
-thetastar/
-train_log_likelihood.txt
-u.txt
-W/
-z.txt
+A/                          | Latent state transition matrix
+accuracy.txt                |
+beta.txt                    |
+F1_score.txt                |
+gamma.txt                   |
+h.txt                       |
+lambda.txt                  |
+mu.txt                      |
+N/                          |
+n_dot.txt                   |
+obs.txt                     |
+parameters.config           |
+phi/                        |
+pi/                         |
+pi0/                        |
+precision.txt               |
+Q/                          | Auxiliary data
+recall.txt                  |
+test_log_likelihood.txt     |
+theta/                      |
+thetastar/                  |
+train_log_likelihood.txt    |
+u.txt                       |
+W/                          |
+z.txt                       |
 ```
