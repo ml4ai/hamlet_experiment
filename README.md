@@ -126,30 +126,33 @@ Convention for directory naming for batch results:
     <specific_results> : The directory containing all of the results output.
         We do a lot of bookkeeping for debugging (this can be controlled)
         so there can be a large number of files and subdirectories.
+```
 
-        A/
-        accuracy.txt
-        beta.txt
-        F1_score.txt
-        gamma.txt
-        h.txt
-        lambda.txt
-        mu.txt
-        N/
-        n_dot.txt
-        obs.txt
-        parameters.config
-        phi/
-        pi/
-        pi0/
-        precision.txt
-        Q/
-        recall.txt
-        test_log_likelihood.txt
-        theta/
-        thetastar/
-        train_log_likelihood.txt
-        u.txt
-        W/
-        z.txt
+## Notes on contents of hamlet results directory:
+```
+A/
+accuracy.txt
+beta.txt
+F1_score.txt
+gamma.txt
+h.txt
+lambda.txt
+mu.txt
+N/
+n_dot.txt
+obs.txt
+parameters.config
+phi/
+pi/
+pi0/
+precision.txt
+Q/
+recall.txt
+test_log_likelihood.txt
+theta/
+thetastar/
+train_log_likelihood.txt
+u.txt
+W/
+z.txt
 ```
