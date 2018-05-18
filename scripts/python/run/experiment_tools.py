@@ -3,7 +3,7 @@ import datetime
 import multiprocessing
 from subprocess import call  # call command-line
 
-import util
+import run.util as util
 
 __author__ = 'clayton'
 
@@ -86,6 +86,7 @@ result_name_abbreviation = \
     {'HMM': 'hmm', 'HSMM': 'hsmm',
      'HDP': 'hdp', 'Dirichlet': 'dir',
      'Known': 'w0', 'IID_normal': 'w1',
+     'Normal': 'w1',  # case when weights are being learned, with WEIGHTS_PRIOR = Normal
      'Binary_factorial': 'BFact'}
 
 
@@ -345,7 +346,7 @@ def run_experiment_batch(parameter_spec_list,
         if results:
             failures_list = get_failures(results)
             logf.write("('results', {0})\n".format(results))
-            if failures_list > 0:
+            if len(failures_list) > 0:
                 logf.write("('failures', {0}, {1})\n".format(len(failures_list), failures_list))
         logf.write("('total_time', '{0}')\n".format(total_time))
     lock.release()
@@ -454,6 +455,9 @@ def get_dir_branches(root_dir, main_path=HAMLET_ROOT,
     owd = os.getcwd()
     os.chdir(main_path)
 
+    if not os.path.isdir(root_dir):
+        print('WARNING: (experiment_tools.get_dir_branches) Cannot find data root_dir:', root_dir)
+
     for dirName, subdirList, fileList in os.walk(root_dir):
         if not subdirList:
             if remove_root_p:
@@ -474,10 +478,6 @@ def get_dir_branches(root_dir, main_path=HAMLET_ROOT,
     # select subset according to match_dict pattern
     # dir_branches = select_subdirs(dir_branches, match_dict=match_dict, verbose=select_subdirs_verbose)
     dir_branches = select_subdirs(dir_branches, match_dict=match_dict, verbose=True)
-
-    # print '-----'
-    # for db in dir_branches:
-    #     print db
 
     if select_subdirs_verbose:
         print('dir_branches after selection:')

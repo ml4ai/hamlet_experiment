@@ -41,7 +41,7 @@ def test():
 # Parameter spec list
 # ----------------------------------------------------------------------
 
-def collect_parameter_spec_list_cocktail16_w0(parameters_path):
+def collect_parameter_spec_list_diarization(parameters_path):
     """
     cp **NO** weight learning (w0), 1500 iterations, D=16, and J=600 for hmm
     works with: cocktail_s16_m12
@@ -49,7 +49,7 @@ def collect_parameter_spec_list_cocktail16_w0(parameters_path):
     """
     return [ # experiment_tools.ParameterSpec('cocktail16_inference_BFact_HMM_W0.config', parameters_path),
              # experiment_tools.ParameterSpec('cocktail16_inference_LT_HMM_W0-J600.config', parameters_path),
-             experiment_tools.ParameterSpec('cocktail16_inference_noLT_HMM_W0-J600.config', parameters_path)
+             experiment_tools.ParameterSpec('diarization_inference_noLT_HMM_W0-J200.config', parameters_path)
     ]
 
 
@@ -57,34 +57,14 @@ def collect_parameter_spec_list_cocktail16_w0(parameters_path):
 # Scripts
 # ----------------------------------------------------------------------
 
-# The source data may be nested in a tree of subdirectories
-# differentiated by properties of the data.
-# For example, the synthetic cocktail_party data has been
-# generated under a variety of different emission noise
-# conditions (e.g., precision=10.0 (h10.0), precision=5.0 (h5.0), etc...);
-# under each of those noise conditions, there are several
-# data samples (e.g., cp0, cp1, cp2).
-# To enable running of batch experiments across a variety of
-# combinations of data sources, the following specifies which
-# directories in the directory tree will combined in the experiment.
-# match_select_regression starts by specifying at the level-0 (first level)
-# of the source data directory the list of noise levels that will
-# be included in the experiment; this is followed by the second
-# level (level-1) specification of the list of cp# samples.
-# The batch experiment will include the Cartesian products of these.
-# For example, if doing noise levels 10.0, 5.0, 2.0 and for cp0, cp1, cp2,
-# then there would be a total of 9 experiments generated (for this part
-# of the experiment generation; other configuration, such as number of
-# replications will expand the Cartesian product to more...)
-match_select_regression = {0: ['h{0}_nocs'.format(h) for h in [10.0]],
-                           1: ['cp{0}'.format(i) for i in range(1)]}
+match_select_d = {0: ['asu_test_01']}
 
 
-# The top-level script to run the cocktail_party regression test
-def cp_regression(test=True):
+# The top-level script to run the diarization test
+def d_test(test=True):
     """
-    Basic experiment using config cocktail16_inference_{BFact,LT,no_LT}
-    2000 iterations, J=600, {a,b}_h=0.1 (prior over precision of noise)
+    Basic experiment using config diarization_inference_{BFact,LT,no_LT}
+    2000 iterations, J=200, {a,b}_h=0.1 (prior over precision of noise)
     :return:
     """
 
@@ -92,12 +72,12 @@ def cp_regression(test=True):
 
     experiment_tools.run_experiment_script \
         (main_path=HAMLET_ROOT,
-         data_dir=os.path.join(DATA_ROOT, 'cocktail_s16_m12/'),
-         results_dir=os.path.join(RESULTS_ROOT, 'cocktail_s16_m12'),
+         data_dir=os.path.join(DATA_ROOT, 'diarization/'),
+         results_dir=os.path.join(RESULTS_ROOT, 'diarization'),
          replications=1,
          offset=0,
-         parameter_spec_list=collect_parameter_spec_list_cocktail16_w0(PARAMETERS_ROOT),
-         match_dict=match_select_regression,
+         parameter_spec_list=collect_parameter_spec_list_diarization(PARAMETERS_ROOT),
+         match_dict=match_select_d,
          multiproc=True,
          processor_pool_size=multiprocessing.cpu_count(),
          rerun=False,
@@ -106,5 +86,4 @@ def cp_regression(test=True):
 
 
 # Run me!
-cp_regression(test=True)
-
+d_test(test=False)

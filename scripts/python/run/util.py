@@ -1,5 +1,6 @@
 import collections
 import datetime
+import os
 
 __author__ = 'clayton'
 
@@ -39,3 +40,48 @@ def get_timestamp(verbose=False):
             .format(year=now.year, month=now.month, day=now.day,
                     hour=now.hour, minute=now.minute, second=now.second,
                     micro=now.microsecond)
+
+# ----------------------------------------------------------------------
+# read parameter file as dictionary
+# ----------------------------------------------------------------------
+
+def read_parameter_file_as_dict(parameter_filepath, parameter_filename, main_path=None):
+    if parameter_filepath[-1] != '/':
+        parameter_filepath += '/'
+
+    config_filepath = parameter_filepath + parameter_filename
+
+    '''
+    glob_search_path = parameter_filepath + '/*.config'
+    config_filepath = glob.glob(glob_search_path)
+    if not config_filepath:
+        print 'Could not find config file in this glob search path:\n' \
+            + '    \'{0}\''.format(glob_search_path)
+        sys.exit(1)
+    '''
+
+    params_dict = dict()
+
+    if main_path:
+        owd = os.getcwd()
+        os.chdir(main_path)
+
+    try:
+        with open(config_filepath, 'r') as cfile:
+            for line in cfile.readlines():
+                line = line.rstrip('\n').split(' ')
+                if line[0] and not (line[0][0] == '/'):
+                    # print '>>> {0}'.format(line)
+                    key = line[0] + ':' + line[1]
+                    val = line[2]
+                    params_dict[key] = val
+                # else : print '<<< {0}'.format(line)
+    except IOError as err:
+        print('ERROR: read_parameter_file_as_dict()')
+        print('       Current working directory:', os.getcwd())
+        raise IOError(err)
+
+    if main_path:
+        os.chdir(owd)
+
+    return params_dict
